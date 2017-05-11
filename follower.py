@@ -113,7 +113,7 @@ target_heading = 0
 thl = [450,400,390,340,290]
 
 dist_bias = 0
-turn_bias = 10
+turn_bias = 13
 speed_bias = 0.9
 
 try:
@@ -152,6 +152,6 @@ try:
 			setMotorSpeed("l",(90+(heading - target_heading)/90.0)*speed_bias);
 			setMotorSpeed("r",90*speed_bias);
 finally:
-    pl.stop()
-    pr.stop()
+    ml.stop()
+    mr.stop()
     GPIO.cleanup()
