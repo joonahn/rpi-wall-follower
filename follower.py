@@ -72,11 +72,13 @@ def setMotor(lr, cmd):
         GPIO.output(in2, False) 
 
 def setMotorSpeed(lr, speed):
+	global ml
+	global mr
 	if isNumeric(speed):
 		if lr=="r":
-			p0.ChangeDutyCycle(speed)
+			mr.ChangeDutyCycle(speed)
 		elif lr=="l":
-			p1.ChangeDutyCycle(speed)
+			ml.ChangeDutyCycle(speed)
 
 def pt_right():
 	global turn_bias
