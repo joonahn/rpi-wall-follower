@@ -153,10 +153,10 @@ try:
 		
 		if heading - target_heading > 0 :
 			setMotorSpeed("l",90*speed_bias);
-			setMotorSpeed("r",(90-(heading - target_heading)/90.0)*speed_bias);
+			setMotorSpeed("r",(90-(heading - target_heading)/4.4)*speed_bias);
 
 		if heading - target_heading < 0 :
-			setMotorSpeed("l",(90+(heading - target_heading)/90.0)*speed_bias);
+			setMotorSpeed("l",(90+(heading - target_heading)/4.4)*speed_bias);
 			setMotorSpeed("r",90*speed_bias);
 finally:
     ml.stop()
