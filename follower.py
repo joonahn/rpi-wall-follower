@@ -3,7 +3,7 @@ import RPi.GPIO as GPIO
 import time
 
 def readSensor(_ser):
-	_ser.flushinput()
+	_ser.flushInput()
 	_ser.readline()
 	raw_data = _ser.readline()
 	data = raw_data.split('\t')
