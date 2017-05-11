@@ -76,6 +76,8 @@ def setMotorSpeed(lr, speed):
 	global ml
 	global mr
 	if isNumeric(speed):
+		speed = speed if speed<100 else 100
+		speed = speed if speed>0 else 0
 		if lr=="r":
 			mr.ChangeDutyCycle(speed)
 		elif lr=="l":
@@ -118,7 +120,7 @@ def straight_a_bit(dist):
 	setMotor("l",'F')
 	setMotor("r",'F')
 
-ml,mr = initMotor()
+mr,ml = initMotor()
 ser = initSensor()
 
 delta = 0
@@ -127,8 +129,8 @@ target_heading = 0
 thl = [450,400,390,340,290]
 
 dist_bias = 0
-turn_bias = 13
-lspeed_bias = 0.7
+turn_bias = 20
+lspeed_bias = 0.9
 rspeed_bias = 0.9
 speed_bias = (lspeed_bias + rspeed_bias) / 2
 
@@ -149,9 +151,9 @@ try:
 			target_heading = 0
 
 		if IRF < 200 :
-			straight_a_bit(88)
+			straight_a_bit(70)
 			pt_left()
-			straight_a_bit(130)
+			straight_a_bit(170)
 		elif IRF < th[4]:
 			target_heading = 80
 		elif IRF < th[3]:

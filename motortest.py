@@ -54,6 +54,9 @@ p1.ChangeDutyCycle(90)
 p1.ChangeFrequency(50)
 
 try:
+    setMotor("l", 'S')
+    setMotor("r", 'S')
+
     while True: 
         str= raw_input("input command")
         str = str.strip()
