@@ -116,42 +116,42 @@ dist_bias = 0
 turn_bias = 10
 speed_bias = 0.9
 
-while True:
-	th = list(map(lambda x: x + dist_bias,thl))
-	IRH,IRF,IRB = readSensor(ser)
-	heading = IRF-IRB
-	
-	if IRH > 300 :
-		pt_right()
-		target_heading = 0
-
-	if IRF < 200 :
-		straight_a_bit(88)
-		pt_left()
-		straight_a_bit(130)
-	elif IRF < th[4]:
-		target_heading = 80
-	elif IRF < th[3]:
-		target_heading = 80
-	elif IRF < th[2]:
-		target_heading = 50
-	elif IRF < th[1]:
-		target_heading = 0
-	elif IRF < th[0]:
-		target_heading = -50
-		delta = IRF - th[1]
-	else:
-		target_heading = -80
-	
-	if heading - target_heading > 0 :
-		setMotorSpeed("l",90*speed_bias);
-		setMotorSpeed("r",(90-(heading - target_heading)/90.0)*speed_bias);
-
-	if heading - target_heading < 0 :
-		setMotorSpeed("l",(90+(heading - target_heading)/90.0)*speed_bias);
-		setMotorSpeed("r",90*speed_bias);
-
-
-
-
+try:
+	while True:
+		th = list(map(lambda x: x + dist_bias,thl))
+		IRH,IRF,IRB = readSensor(ser)
+		heading = IRF-IRB
 		
+		if IRH > 300 :
+			pt_right()
+			target_heading = 0
+
+		if IRF < 200 :
+			straight_a_bit(88)
+			pt_left()
+			straight_a_bit(130)
+		elif IRF < th[4]:
+			target_heading = 80
+		elif IRF < th[3]:
+			target_heading = 80
+		elif IRF < th[2]:
+			target_heading = 50
+		elif IRF < th[1]:
+			target_heading = 0
+		elif IRF < th[0]:
+			target_heading = -50
+			delta = IRF - th[1]
+		else:
+			target_heading = -80
+		
+		if heading - target_heading > 0 :
+			setMotorSpeed("l",90*speed_bias);
+			setMotorSpeed("r",(90-(heading - target_heading)/90.0)*speed_bias);
+
+		if heading - target_heading < 0 :
+			setMotorSpeed("l",(90+(heading - target_heading)/90.0)*speed_bias);
+			setMotorSpeed("r",90*speed_bias);
+finally:
+    pl.stop()
+    pr.stop()
+    GPIO.cleanup()
