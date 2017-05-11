@@ -83,14 +83,23 @@ def setMotorSpeed(lr, speed):
 
 def pt_right():
 	global turn_bias
+	global lspeed_bias
+	global rspeed_bias
+	setMotorSpeed("l",90*lspeed_bias);
+	setMotorSpeed("r",90*rspeed_bias);
 	setMotor("l",'F')
 	setMotor("r",'R')
 	time.sleep(0.05 * turn_bias)
 	setMotor("l",'F')
 	setMotor("r",'F')
 
+
 def pt_left():
 	global turn_bias
+	global lspeed_bias
+	global rspeed_bias	
+	setMotorSpeed("l",90*lspeed_bias);
+	setMotorSpeed("r",90*rspeed_bias);	
 	setMotor("l",'R')
 	setMotor("r",'F')
 	time.sleep(0.05 * turn_bias)
@@ -99,6 +108,10 @@ def pt_left():
 
 def straight_a_bit(dist):
 	global speed_bias
+	global lspeed_bias
+	global rspeed_bias	
+	setMotorSpeed("l",90*lspeed_bias);
+	setMotorSpeed("r",90*rspeed_bias);		
 	setMotor("l",'F')
 	setMotor("r",'F')
 	time.sleep(0.01 * dist / speed_bias)
@@ -115,7 +128,9 @@ thl = [450,400,390,340,290]
 
 dist_bias = 0
 turn_bias = 13
-speed_bias = 0.9
+lspeed_bias = 0.7
+rspeed_bias = 0.9
+speed_bias = (lspeed_bias + rspeed_bias) / 2
 
 try:
 	setMotor("l",'F')
@@ -152,12 +167,12 @@ try:
 			target_heading = -80
 		
 		if heading - target_heading > 0 :
-			setMotorSpeed("l",90*speed_bias);
-			setMotorSpeed("r",(90-(heading - target_heading)/4.4)*speed_bias);
+			setMotorSpeed("l",90*lspeed_bias);
+			setMotorSpeed("r",(90-(heading - target_heading)/4.4)*rspeed_bias);
 
 		if heading - target_heading < 0 :
-			setMotorSpeed("l",(90+(heading - target_heading)/4.4)*speed_bias);
-			setMotorSpeed("r",90*speed_bias);
+			setMotorSpeed("l",(90+(heading - target_heading)/4.4)*lspeed_bias);
+			setMotorSpeed("r",90*rspeed_bias);
 finally:
     ml.stop()
     mr.stop()
