@@ -124,6 +124,9 @@ try:
 		th = list(map(lambda x: x + dist_bias,thl))
 		IRH,IRF,IRB = readSensor(ser)
 		heading = IRF-IRB
+
+		print "target heading: {}".format(target_heading)
+		print "IRH: {} IRF: {} IRB: {}".format(IRH,IRF,IRB)
 		
 		if IRH > 300 :
 			pt_right()
