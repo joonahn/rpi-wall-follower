@@ -3,6 +3,8 @@ import RPi.GPIO as GPIO
 import time
 
 def readSensor(_ser):
+	_ser.flushinput()
+	_ser.readline()
 	raw_data = _ser.readline()
 	data = raw_data.split('\t')
 	if len(data)<3:
@@ -21,7 +23,6 @@ def isNumeric(s):
 
 def initSensor():
 	_ser = serial.Serial('/dev/ttyS0', 9600, timeout=1)
-	_ser.readline() # Flush initial data
 	return _ser
 
 def initMotor():
