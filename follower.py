@@ -85,24 +85,24 @@ def pt_right():
 	setMotor("l",'F')
 	setMotor("r",'R')
 	time.sleep(0.05 * turn_bias)
-	setMotor("l",'S')
-	setMotor("r",'S')
+	setMotor("l",'F')
+	setMotor("r",'F')
 
 def pt_left():
 	global turn_bias
 	setMotor("l",'R')
 	setMotor("r",'F')
 	time.sleep(0.05 * turn_bias)
-	setMotor("l",'S')
-	setMotor("r",'S')
+	setMotor("l",'F')
+	setMotor("r",'F')
 
 def straight_a_bit(dist):
 	global speed_bias
 	setMotor("l",'F')
 	setMotor("r",'F')
 	time.sleep(0.01 * dist / speed_bias)
-	setMotor("l",'S')
-	setMotor("r",'S')
+	setMotor("l",'F')
+	setMotor("r",'F')
 
 ml,mr = initMotor()
 ser = initSensor()
@@ -117,6 +117,9 @@ turn_bias = 13
 speed_bias = 0.9
 
 try:
+	setMotor("l",'F')
+	setMotor("r",'F')
+
 	while True:
 		th = list(map(lambda x: x + dist_bias,thl))
 		IRH,IRF,IRB = readSensor(ser)
