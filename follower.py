@@ -129,17 +129,17 @@ while True:
 		straight_a_bit(88)
 		pt_left()
 		straight_a_bit(130)
-	elif IRF < th5:
+	elif IRF < th[4]:
 		target_heading = 80
-	elif IRF < th4:
+	elif IRF < th[3]:
 		target_heading = 80
-	elif IRF < th3:
+	elif IRF < th[2]:
 		target_heading = 50
-	elif IRF < th2:
+	elif IRF < th[1]:
 		target_heading = 0
-	elif IRF < th1:
+	elif IRF < th[0]:
 		target_heading = -50
-		delta = IRF - th2
+		delta = IRF - th[1]
 	else:
 		target_heading = -80
 	
