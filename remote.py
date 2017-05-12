@@ -4,6 +4,13 @@ import time
 import SocketServer
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 
+def isNumeric(s):
+    try: 
+        int(s)
+        return True
+    except ValueError:
+        return False    
+
 def initSensor():
 	_ser = serial.Serial('/dev/ttyS0', 9600, timeout=1)
 	return _ser
@@ -131,6 +138,7 @@ class S(BaseHTTPRequestHandler):
         	straight_a_bit()
         elif "rr" in post_data:
         	bstraight_a_bit()
+		print "POST request"
         self._set_headers()
         self.wfile.write("<html><body><h1>POST!</h1></body></html>")
         
