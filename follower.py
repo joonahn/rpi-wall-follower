@@ -126,7 +126,6 @@ def straight_a_bit(dist):
 mr,ml = initMotor()
 ser = initSensor()
 
-delta = 0
 heading = 0
 target_heading = 0
 thl = [450,400,390,340,290]
@@ -160,23 +159,27 @@ try:
 			straight_a_bit(170)
 		elif IRF < th[4]:
 			target_heading = 80
-			lspeed_bias, rspeed_bias = 0.5, 0.5
 		elif IRF < th[3]:
 			target_heading = 80
-			lspeed_bias, rspeed_bias = 0.5, 0.5
 		elif IRF < th[2]:
 			target_heading = 50
-			lspeed_bias, rspeed_bias = 0.7, 0.7
 		elif IRF < th[1]:
 			target_heading = 0
-			lspeed_bias, rspeed_bias = 0.9, 0.9
 		elif IRF < th[0]:
 			target_heading = -50
-			lspeed_bias, rspeed_bias = 0.7, 0.7
-			delta = IRF - th[1]
 		else:
 			target_heading = -80
+
+		# heading difference
+		hdiff = abs(heading - target_heading)
+		if hdiff < 20
+			lspeed_bias, rspeed_bias = 0.9, 0.9
+		elif hdiff < 40
+			lspeed_bias, rspeed_bias = 0.7, 0.7
+		elif hdiff < 60
 			lspeed_bias, rspeed_bias = 0.5, 0.5
+		else
+			lspeed_bias, rspeed_bias = 0.3, 0.3
 		
 		if heading - target_heading > 0 :
 			setMotorSpeed("l",90*lspeed_bias);
