@@ -146,8 +146,8 @@ try:
 		heading = IRF-IRB
 		lspeed_bias, rspeed_bias = 0.9, 0.9
 
-		#print "target heading: {}".format(target_heading)
-		#print "IRH: {} IRF: {} IRB: {}".format(IRH,IRF,IRB)
+		print "target heading: {}".format(target_heading)
+		print "IRH: {} IRF: {} IRB: {}".format(IRH,IRF,IRB)
 		
 		if IRH > 300 :
 			pt_right()
