@@ -87,26 +87,29 @@ def pt_right():
 	global turn_bias
 	global lspeed_bias
 	global rspeed_bias
-	setMotorSpeed("l",90*lspeed_bias);
-	setMotorSpeed("r",90*rspeed_bias);
+	setMotorSpeed("l",50*lspeed_bias);
+	setMotorSpeed("r",50*rspeed_bias);	
 	setMotor("l",'F')
 	setMotor("r",'R')
 	time.sleep(0.05 * turn_bias)
 	setMotor("l",'F')
 	setMotor("r",'F')
-
+	setMotorSpeed("l",90*lspeed_bias);
+	setMotorSpeed("r",90*rspeed_bias);	
 
 def pt_left():
 	global turn_bias
 	global lspeed_bias
 	global rspeed_bias	
-	setMotorSpeed("l",90*lspeed_bias);
-	setMotorSpeed("r",90*rspeed_bias);	
+	setMotorSpeed("l",50*lspeed_bias);
+	setMotorSpeed("r",50*rspeed_bias);	
 	setMotor("l",'R')
 	setMotor("r",'F')
 	time.sleep(0.05 * turn_bias)
 	setMotor("l",'F')
 	setMotor("r",'F')
+	setMotorSpeed("l",90*lspeed_bias);
+	setMotorSpeed("r",90*rspeed_bias);	
 
 def straight_a_bit(dist):
 	global speed_bias
@@ -129,7 +132,7 @@ target_heading = 0
 thl = [450,400,390,340,290]
 
 dist_bias = 0
-turn_bias = 20
+turn_bias = 35
 lspeed_bias = 0.9
 rspeed_bias = 0.9
 speed_bias = (lspeed_bias + rspeed_bias) / 2
@@ -142,6 +145,7 @@ try:
 		th = list(map(lambda x: x + dist_bias,thl))
 		IRH,IRF,IRB = readSensor(ser)
 		heading = IRF-IRB
+		lspeed_bias, rspeed_bias = 0.9, 0.9
 
 		print "target heading: {}".format(target_heading)
 		print "IRH: {} IRF: {} IRB: {}".format(IRH,IRF,IRB)
@@ -156,17 +160,23 @@ try:
 			straight_a_bit(170)
 		elif IRF < th[4]:
 			target_heading = 80
+			lspeed_bias, rspeed_bias = 0.5, 0.5
 		elif IRF < th[3]:
 			target_heading = 80
+			lspeed_bias, rspeed_bias = 0.5, 0.5
 		elif IRF < th[2]:
 			target_heading = 50
+			lspeed_bias, rspeed_bias = 0.7, 0.7
 		elif IRF < th[1]:
 			target_heading = 0
+			lspeed_bias, rspeed_bias = 0.9, 0.9
 		elif IRF < th[0]:
 			target_heading = -50
+			lspeed_bias, rspeed_bias = 0.7, 0.7
 			delta = IRF - th[1]
 		else:
 			target_heading = -80
+			lspeed_bias, rspeed_bias = 0.5, 0.5
 		
 		if heading - target_heading > 0 :
 			setMotorSpeed("l",90*lspeed_bias);
